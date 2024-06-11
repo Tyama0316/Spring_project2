@@ -21,9 +21,21 @@ public class MinusController {
     }
 
     @PostMapping("/calculateMinus")
-    public String calculateMinus(@RequestParam("number1") int number1, @RequestParam("number2") int number2, Model model) {
-        int result = minusService.subtract(number1, number2);
-        model.addAttribute("result", result);
+    public String calculateMinus(@RequestParam(value = "number1", required = false) String number1,
+                                 @RequestParam(value = "number2", required = false) String number2,
+                                 Model model) {
+        if (number1 == null || number1.isEmpty() || number2 == null || number2.isEmpty()) {
+            model.addAttribute("error", "両方の数字を入力してください。");
+            return "minus.html";
+        }
+        try {
+            int num1 = Integer.parseInt(number1);
+            int num2 = Integer.parseInt(number2);
+            int result = minusService.subtract(num1, num2);
+            model.addAttribute("result", result);
+        } catch (NumberFormatException e) {
+            model.addAttribute("error", "有効な数字を入力してください。");
+        }
         return "minus.html";
     }
 }

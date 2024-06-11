@@ -16,5 +16,8 @@
     <div th:if="${result != null}">
         結果：<span th:text="${result}"></span>
     </div>
+    <div th:if="${error != null}" style="color: red;">
+        <p th:text="${error}"></p>
+    </div>
 </body>
 </html>

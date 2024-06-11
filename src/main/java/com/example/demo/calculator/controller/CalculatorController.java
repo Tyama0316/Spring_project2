@@ -25,8 +25,15 @@ public class CalculatorController {
                             @RequestParam("number2") int number2, 
                             @RequestParam("operation") String operation, 
                             Model model) {
-        int result = calculatorService.calculate(number1, number2, operation);
-        model.addAttribute("result", result);
+        try {
+            int result = calculatorService.calculate(number1, number2, operation);
+            model.addAttribute("result", result);
+            model.addAttribute("isError", false);
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("result", "error");
+            model.addAttribute("isError", true);
+            model.addAttribute("errorMessage", e.getMessage());
+        }
         return "calculator";
     }
 }

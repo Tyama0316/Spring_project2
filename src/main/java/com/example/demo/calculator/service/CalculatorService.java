@@ -17,10 +17,10 @@ public class CalculatorService {
                 if (number2 != 0) {
                     return number1 / number2;
                 } else {
-                    throw new IllegalArgumentException("Division by zero");
+                    throw new IllegalArgumentException("ゼロで除算することはできません。");
                 }
             default:
-                throw new IllegalArgumentException("Invalid operation");
+                throw new IllegalArgumentException("無効な演算です。");
         }
     }
 }

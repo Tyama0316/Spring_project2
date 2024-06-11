@@ -18,7 +18,9 @@
         <button type="submit">=</button>
     </form>
     <div>
-        <p>結果: <span th:text="${result}"></span></p>
+        <p th:if="${isError}" th:text="'結果: ' + ${result}" style="color: red;"></p>
+        <p th:if="${!isError}" th:text="'結果: ' + ${result}"></p>
+        <p th:if="${isError}" th:text="${errorMessage}" style="color: red;"></p>
     </div>
 </body>
 </html>
