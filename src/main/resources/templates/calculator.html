@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>計算機</h1>
-    <form action="/calculator" method="post">
+    <form action="/calculate" method="post">
         <input type="number" name="number1" required>
         <select name="operation">
             <option value="+">+</option>
@@ -19,7 +19,7 @@
     </form>
     <div>
         <p th:if="${isError}" th:text="'結果: ' + ${result}" style="color: red;"></p>
-        <p th:if="${!isError}" th:text="'結果: ' + ${result}"></p>
+        <p th:if="${isError == false}" th:text="'結果: ' + ${result}"></p>
         <p th:if="${isError}" th:text="${errorMessage}" style="color: red;"></p>
     </div>
 </body>
